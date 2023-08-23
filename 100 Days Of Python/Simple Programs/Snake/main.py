@@ -21,6 +21,7 @@ screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
+
 gameActive = True
 while gameActive:
     screen.update()
@@ -34,14 +35,13 @@ while gameActive:
         sb.increaseScore()
 
     if snake.head.xcor()>280 or snake.head.xcor()<-300 or snake.head.ycor()>300 or snake.head.ycor()<-280:
-        gameActive=False
-        sb.gameOver()
-
+        sb.reset()
+        snake.reset()
     for seg in snake.segments:
         if seg == snake.head:
             continue
         if snake.head.distance(seg)<18:
-            gameActive=False
-            sb.gameOver()
+            sb.reset()
+            snake.reset()
 
 screen.exitonclick()
